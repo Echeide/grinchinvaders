@@ -1,0 +1,6 @@
+<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+    <!-- Star Shape -->
+    <polygon points="30,5 38,25 58,25 42,38 48,58 30,45 12,58 18,38 2,25 22,25" fill="#ffd53e" stroke="#ec615d" stroke-width="1"/>
+    <!-- Inner Detail -->
+    <circle cx="30" cy="35" r="5" fill="#ec615d"/>
+</svg>

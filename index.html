@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grinch Invaders - Felicitación Navideña</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/png" href="images/echeide-favicon.png">
+    <!-- Mobile & PWA -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#1f2b51">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" href="images/echeide-favicon.png">
+
+    <!-- Open Graph / Social Sharing -->
+    <meta property="og:title" content="Revienta la Navidad - Grinch Invaders">
+    <meta property="og:description"
+        content="La terapia que no sabías que necesitabas. Destruye la Navidad y libera tu estrés.">
+    <meta property="og:image" content="https://navidad.echeide.com/images/grafico_portada.svg">
+    <meta property="og:url" content="https://navidad.echeide.com">
+    <meta property="og:type" content="website">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@400;700&family=Roboto:wght@400;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div id="rotate-message">
+        <div class="phone-icon"></div>
+        <p>Por favor, gira tu dispositivo</p>
+    </div>
+    <div id="game-container">
+        <canvas id="game-canvas"></canvas>
+        <!-- View 0: Loading Screen -->
+        <div id="loading-screen" class="view active">
+            <h1 class="title">Cargando Navidad...</h1>
+            <div class="progress-container">
+                <div id="progress-bar"></div>
+            </div>
+            <p id="loading-text">0%</p>
+        </div>
+
+        <!-- View 1: Start Screen -->
+        <div id="start-screen" class="view">
+            <div class="content">
+                <h1 class="title">Revienta la Navidad</h1>
+                <p class="subtitle">¡La terapia que no sabías que necesitabas!</p>
+                <div class="illustration-container">
+                    <img src="images/grafico_portada.svg" alt="Portada Grinch Invaders" class="hero-image">
+                </div>
+
+
+            </div>
+            <div class="play">
+                <div class="control-options">
+                    <label class="switch">
+                        <input type="checkbox" id="gyro-toggle" checked>
+                        <span class="slider round"></span>
+                    </label>
+                    <span class="label-text">Usar Giroscopio</span>
+                </div>
+                <div class="instructions">
+                    <p id="instructions-text" class="instructions">Inclina tu dispositivo para moverte y pulsa sobre la
+                        pantalla para disparar</p>
+                </div>
+
+                <button id="start-btn" class="btn-primary">JUGAR</button>
+            </div>
+            <div class="foot"><img src="images/echeide-logo.svg" alt="Logo Echeide" class="echeide-logo" width="150px">
+            </div>
+        </div>
+
+        <!-- View 2: Game Sc reen -->
+        <div id="game-screen" class="view">
+            <div id="hud">
+                <div class="hud-item">PUNTOS: <span id="score">0</span></div>
+                <div class="hud-item">VIDAS: <span id="lives">3</span></div>
+            </div>
+            <div id="level-message" class="level-message"></div>
+
+            <button id="mobile-shoot-btn"></button>
+
+            <!-- Mobile Controls -->
+            <div id="mobile-controls">
+                <button id="btn-left" class="control-btn">
+                    <svg viewBox="0 0 24 24" width="48" height="48">
+                        <path fill="currentColor" d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
+                    </svg>
+                </button>
+
+                <div class="spacer"></div>
+
+                <div class="right-controls">
+                    <button id="btn-shoot" class="control-btn shoot-btn">
+                        <svg viewBox="0 0 24 24" width="40" height="40">
+                            <path fill="currentColor"
+                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm2.5-3.5L13 13v-3l.5-.5h2l.5.5v2.5l-.5.5h-1.5l-1 .5H13v1.5h-2l2.5-2.5zM15 11l-.5-.5h-2l-.5.5v2l.5.5h2l.5-.5v-2z" />
+                            <!-- Target icon or similar -->
+                            <circle cx="12" cy="12" r="8" fill="rgba(255,0,0,0.5)" />
+                            <circle cx="12" cy="12" r="4" fill="white" />
+                        </svg>
+                    </button>
+                    <button id="btn-right" class="control-btn">
+                        <svg viewBox="0 0 24 24" width="48" height="48">
+                            <path fill="currentColor" d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- View 3: Score Screen -->
+        <div id="score-screen" class="view">
+            <div class="content">
+                <h2 class="game-over-title">¡JUEGO TERMINADO!</h2>
+                <p class="felicitacion">Menos estrés, más creatividad. De parte de todos los que hacemos echeide.com:
+                    <br><b>¡Brindemos por un 2026 espectacular!</b>
+                </p>
+                <p class="final-score">Puntuación Final: <span id="final-score-display">0</span></p>
+
+                <div class="input-group">
+                    <label for="initials">Ingresa tus iniciales:</label>
+                    <input type="text" id="initials" maxlength="3" placeholder="ABC">
+                </div>
+
+                <button id="save-score-btn" class="btn-primary">GUARDAR</button>
+                <button id="restart-btn" class="btn-secondary">VOLVER A JUGAR</button>
+
+                <div class="high-scores">
+                    <h3>Mejores Grinchs</h3>
+                    <ul id="high-scores-list">
+                        <!-- Scores will be populated here -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/assets.js"></script>
+    <script src="js/game.js"></script>
+</body>
+
+</html>

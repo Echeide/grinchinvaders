@@ -1,0 +1,13 @@
+<svg width="80" height="50" viewBox="0 0 80 50" xmlns="http://www.w3.org/2000/svg">
+    <!-- Sleigh Body -->
+    <path d="M10 35 Q10 45 25 45 L60 45 Q70 45 75 35 L70 25 L15 25 Z" fill="#ec615d" stroke="#ffd53e" stroke-width="2"/>
+    <!-- Runners -->
+    <path d="M5 45 Q15 50 25 48 L65 48 Q75 50 80 40" fill="none" stroke="#C0C0C0" stroke-width="2"/>
+    <!-- Santa -->
+    <circle cx="45" cy="20" r="10" fill="#FFCC99"/> <!-- Face -->
+    <path d="M35 20 Q45 5 55 20" fill="#ec615d"/> <!-- Hat -->
+    <circle cx="55" cy="20" r="2" fill="white"/> <!-- Pom pom -->
+    <path d="M38 22 Q45 32 52 22" fill="white"/> <!-- Beard -->
+    <!-- Bag of Gifts -->
+    <circle cx="25" cy="20" r="12" fill="#165B33"/>
+</svg>
